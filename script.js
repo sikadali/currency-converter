@@ -2,6 +2,7 @@ import { apiKey } from "./api-key.js"; // i have my API keys there
 const url = `https://v6.exchangerate-api.com/v6/${apiKey}/pair/`;
 
 const convertButton = document.getElementById("convert");
+const switchButton = document.getElementById("switch");
 
 convertButton.addEventListener("click", () => {
      let firstNumber = Number(document.getElementById("first").value);
@@ -15,7 +16,7 @@ convertButton.addEventListener("click", () => {
      }
 });
 
-function apiCall(url, firstNumber) {
+function apiCall(url, value) {
      fetch(url)
           .then((response) => {
                return new Promise((resolve) =>
@@ -36,12 +37,19 @@ function apiCall(url, firstNumber) {
                          break;
                     case 200:
                          console.log("YIPPI !!");
-                         console.log("RESULT " + json["conversion_rate"]);
+
+                         convertCurrencyAndDisplay(value, json["conversion_rate"]);
+
+                         console.log("RESULT " + value * json["conversion_rate"]);
                          break;
                     default:
                          handleUnexpected(status, json);
                }
           });
+}
+
+function convertCurrencyAndDisplay(value, rate) {
+     document.getElementById("second").value = value * rate;
 }
 
 function handleUnexpected(status, json) {

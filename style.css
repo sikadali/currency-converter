@@ -38,15 +38,6 @@
     gap: 10px
 }
 
-.container .converter .pairs .change-cr {
-    transition: var(--basic-transition);
-    cursor: pointer;
-}
-
-.container .converter .pairs .change-cr:hover {
-    color: var(--white);
-}
-
 .container .converter .pairs .pair {
     display: flex;
     flex-direction: column;
@@ -106,6 +97,15 @@
 }
 
 /* ================================================================= */
+#switch {
+    transition: var(--basic-transition);
+    cursor: pointer;
+}
+
+#switch:hover {
+    color: var(--white);
+}
+
 #first {
     text-align: end;
 }
