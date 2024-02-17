@@ -1,19 +1,17 @@
 import { apiKey } from "./api-key.js"; // i have my API keys there
 const url = `https://v6.exchangerate-api.com/v6/${apiKey}/pair/`;
 
-const secondPair = document.getElementById("second-pair");
-const secondInput = document.getElementById("second");
-const secondSelect = document.getElementById("second-cr");
-
 const firstInput = document.getElementById("first");
+const secondInput = document.getElementById("second");
 const convertButton = document.getElementById("convert");
 const switchButton = document.getElementById("switch");
+const secondPair = document.getElementById("second-pair");
+const firstSelect = document.getElementById("first-cr");
+const secondSelect = document.getElementById("second-cr");
 
 convertButton.addEventListener("click", convertAction);
-
-firstInput.addEventListener("input", function () {
-     whitenSecondPair();
-});
+firstInput.addEventListener("input", whitenSecondPair);
+switchButton.addEventListener("click", switchAction);
 
 function convertAction() {
      let firstNumber = Number(firstInput.value);
@@ -21,7 +19,7 @@ function convertAction() {
      if (isNaN(firstNumber)) {
           alert("THE ENTRY IS NOT A NUMBER, FIX IT");
      } else {
-          let pair = `EUR/USD`;
+          let pair = `${firstSelect.value}/${secondSelect.value}`;
           //console.log("CLICK CONVERT " + firstNumber);
           apiCall(url + pair, firstNumber);
           darkenSecondPair();
@@ -76,4 +74,16 @@ function convertCurrencyAndDisplay(value, rate) {
 
 function handleUnexpected(status, json) {
      alert(status + ": " + json["error-type"]);
+}
+
+function switchAction() {
+     let tempSelect = firstSelect.value;
+     firstSelect.value = secondSelect.value;
+     secondSelect.value = tempSelect;
+
+     let tempInput = firstInput.value;
+     firstInput.value = secondInput.value;
+     secondInput.value = tempInput;
+
+     whitenSecondPair();
 }
