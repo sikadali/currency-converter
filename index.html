@@ -16,16 +16,20 @@
             </div>
             <div class="pairs">
                 <div class="pair">
-                    <input type="text" id="first">
+                    <div class="entry">
+                        <input type="text" id="first">
+                    </div>
                     <hr/>
                     <select name="" id="first-cr">
-                        <option value="USD">USD</option>
                         <option value="EUR">EUR</option>
+                        <option value="USD">USD</option>
                     </select>
                 </div>
                 <span class="material-symbols-outlined change-cr">compare_arrows</span>
-                <div class="pair">
-                    <input type="text" id="second" disabled>
+                <div class="pair" id="second-pair">
+                    <div class="entry">
+                        <input type="text" id="second" disabled>
+                    </div>
                     <hr/>
                     <select name="" id="second-cr">
                         <option value="USD">USD</option>
@@ -36,5 +40,6 @@
             <button id="convert">CONVERT</button>
         </div>
     </div>
+    <script type="module" src="script.js"></script>
 </body>
 </html>

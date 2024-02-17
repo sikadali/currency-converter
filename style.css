@@ -58,7 +58,11 @@
     box-shadow: 2px 2px 2px var(--less-dark);
 }
 
-.container .converter .pairs .pair input {
+.container .converter .pairs .pair .entry {
+    padding: 0 20px;
+}
+
+.container .converter .pairs .pair .entry input {
     width: 100%;
     color: var(--dark);
     height: 50px;
@@ -118,11 +122,21 @@
     text-align: center;
 }
 
+#second-pair {
+    background-color: var(--less-white);
+    box-shadow: 2px 2px 2px var(--less-white);
+}
+
+#second-pair * {
+    color: var(--dark)
+}
+
 /* ================================================================= */
 :root {
     --main-color: rgb(247, 187, 57);
     --white: rgb(255, 255, 255);
     --less-dark: rgb(206, 152, 36);
+    --less-white: rgb(247, 224, 176);
     --dark: rgb(105, 75, 8);
     --basic-transition: all 0.2s;
 }
