@@ -11,6 +11,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background: linear-gradient(45deg, var(--color-container-bg-grad), var(--color-container-bg)); 
 }
 
 .container .converter {
@@ -18,10 +19,9 @@
     align-items: center;
     flex-direction: column;
     gap: 15px;
-    background-color: var(--main-color);
+    background: var(--main-color);
     padding: 30px;
     width : 450px;
-    box-shadow: 2px 2px 5px rgb(212, 212, 212);
 }
 
 .container .converter .title {
@@ -45,8 +45,9 @@
     justify-content: center;
     width : 40%;
     gap: 5px;
-    background-color: var(--less-dark);
+    background: var(--less-dark);
     box-shadow: 2px 2px 2px var(--less-dark);
+    transition: var(--basic-transition);
 }
 
 .container .converter .pairs .pair .entry {
@@ -59,7 +60,7 @@
     height: 50px;
     font-size: x-large;
     background: transparent;
-    color: white;
+    color: var(--white);
     border: none;
     outline: none;
 }
@@ -75,7 +76,6 @@
     font-size: 15px;
     padding: 5px 0;
     background: transparent;
-    color: white;
     border: none;
     outline: none;
 }
@@ -84,7 +84,7 @@
     border: none;
     outline: none;
     padding: 10px 15px;
-    background-color: var(--dark);
+    background: var(--dark);
     color: var(--white);
     cursor: pointer;
     transition: var(--basic-transition);
@@ -123,7 +123,7 @@
 }
 
 #second-pair {
-    background-color: var(--less-white);
+    background: var(--less-white);
     box-shadow: 2px 2px 2px var(--less-white);
 }
 
@@ -139,4 +139,6 @@
     --less-white: rgb(247, 224, 176);
     --dark: rgb(105, 75, 8);
     --basic-transition: all 0.2s;
+    --color-container-bg: black;
+    --color-container-bg-grad: #4cc3fe;
 }
