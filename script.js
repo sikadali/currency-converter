@@ -1,5 +1,6 @@
 import { apiKey } from "./api-key.js"; // i have my API keys there
 const url = `https://v6.exchangerate-api.com/v6/${apiKey}/pair/`;
+const urlForSelectOptions = `https://v6.exchangerate-api.com/v6/${apiKey}/latest/EUR`;
 
 const firstInput = document.getElementById("first");
 const secondInput = document.getElementById("second");
@@ -9,6 +10,7 @@ const secondPair = document.getElementById("second-pair");
 const firstSelect = document.getElementById("first-cr");
 const secondSelect = document.getElementById("second-cr");
 
+enrichSelects();
 convertButton.addEventListener("click", convertAction);
 firstInput.addEventListener("input", whitenSecondPair);
 switchButton.addEventListener("click", switchAction);
@@ -20,13 +22,12 @@ function convertAction() {
           alert("THE ENTRY IS NOT A NUMBER, FIX IT");
      } else {
           let pair = `${firstSelect.value}/${secondSelect.value}`;
-          //console.log("CLICK CONVERT " + firstNumber);
-          apiCall(url + pair, firstNumber);
+          apiCallConversion(url + pair, firstNumber);
           darkenSecondPair();
      }
 }
 
-function apiCall(url, value) {
+function apiCallConversion(url, value) {
      fetch(url)
           .then((response) => {
                return new Promise((resolve) =>
@@ -86,4 +87,42 @@ function switchAction() {
      secondInput.value = tempInput;
 
      whitenSecondPair();
+}
+
+function enrichSelects() {
+     fetch(urlForSelectOptions)
+          .then((response) => {
+               return new Promise((resolve) =>
+                    response.json().then((json) =>
+                         resolve({
+                              status: response.status,
+                              ok: response.ok,
+                              json,
+                         })
+                    )
+               );
+          })
+          .then(({ status, json, ok }) => {
+               console.log(json);
+               switch (status) {
+                    case 404:
+                         alert("NO CURRENCY FOUND, TRY AGAIN");
+                         break;
+                    case 200:
+                         setUpOptions(firstSelect, json["conversion_rates"]);
+                         setUpOptions(secondSelect, json["conversion_rates"]);
+                         break;
+                    default:
+                         handleUnexpected(status, json);
+               }
+          });
+}
+
+function setUpOptions(select, conversionRates) {
+     for (let rateName of Object.keys(conversionRates)) {
+          var newOption = document.createElement("option");
+          newOption.value = rateName;
+          newOption.text = rateName;
+          select.appendChild(newOption);
+     }
 }
