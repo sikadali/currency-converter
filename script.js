@@ -13,6 +13,8 @@ const secondSelect = document.getElementById("second-cr");
 enrichSelects();
 convertButton.addEventListener("click", convertAction);
 firstInput.addEventListener("input", whitenSecondPair);
+firstInput.addEventListener("keypress", tapEnter);
+secondSelect.addEventListener("change", whitenSecondPair);
 switchButton.addEventListener("click", switchAction);
 
 function convertAction() {
@@ -124,5 +126,12 @@ function setUpOptions(select, conversionRates) {
           newOption.value = rateName;
           newOption.text = rateName;
           select.appendChild(newOption);
+     }
+}
+
+function tapEnter(e) {
+     if (e.key === "Enter") {
+          e.preventDefault();
+          convertButton.click();
      }
 }
