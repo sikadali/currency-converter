@@ -46,7 +46,7 @@
     width : 40%;
     gap: 5px;
     background: var(--less-dark);
-    box-shadow: 2px 2px 2px var(--less-dark);
+    box-shadow: var(--box-shadow-less-dark);
     transition: var(--basic-transition);
 }
 
@@ -124,7 +124,7 @@
 
 #second-pair {
     background: var(--less-white);
-    box-shadow: 2px 2px 2px var(--less-white);
+    box-shadow: var(--box-shadow-less-white);
 }
 
 #second-pair * {
@@ -139,6 +139,8 @@
     --less-white: rgb(247, 224, 176);
     --dark: rgb(105, 75, 8);
     --basic-transition: all 0.2s;
+    --box-shadow-less-dark: 2px 5px 2px var(--less-dark);
+    --box-shadow-less-white: 2px 5px 2px var(--less-white);
     --color-container-bg: black;
     --color-container-bg-grad: #4cc3fe;
 }
